@@ -17,7 +17,6 @@ references:
     run:
       name: Run unit tests
       command: bundle exec rake
-
 jobs:
   rubocop_lint:
     docker:
