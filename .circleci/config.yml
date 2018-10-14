@@ -40,6 +40,14 @@ jobs:
       - run:
           name: Run RuboCop linting
           command: bundle exec rubocop --parallel
+  "ruby-1.9":
+    docker:
+      - image: circleci/ruby-ruby-1.9.3-p551
+    working_directory: /home/circleci/pry
+    steps:
+      - <<: *repo_restore_cache
+      - <<: *bundle_install
+      - <<: *unit
   "ruby-2.0":
     docker:
       - image: kyrylo/ruby-2.0.0p648
@@ -103,10 +111,10 @@ workflows:
     jobs:
       - rubocop_lint
       - yard_lint
-      # - "ruby-1.9":
-      #     requires:
-      #       - rubocop_lint
-      #       - yard_lint
+      - "ruby-1.9":
+          requires:
+            - rubocop_lint
+            - yard_lint
       - "ruby-2.0":
           requires:
             - rubocop_lint
