@@ -42,7 +42,7 @@ jobs:
           command: bundle exec rubocop --parallel
   "ruby-1.9":
     docker:
-      - image: kyrylo/ruby-1.9.3-p551
+      - image: kyrylo/ruby-1.9.3p551
     working_directory: /home/circleci/pry
     steps:
       - <<: *repo_restore_cache
